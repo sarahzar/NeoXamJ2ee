@@ -12,8 +12,12 @@ import javax.persistence.OneToMany;
 
 @Entity
 public class Departement implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@Id
-    private String code;
+    private int code;
     private String libelle;
     
     @OneToMany(mappedBy="dep") 
@@ -28,10 +32,10 @@ public class Departement implements Serializable {
 	}
     
     
-	public String getCode() {
+	public int getCode() {
 		return code;
 	}
-	public void setCode(String code) {
+	public void setCode(int code) {
 		this.code = code;
 	}
 	public String getLibelle() {
