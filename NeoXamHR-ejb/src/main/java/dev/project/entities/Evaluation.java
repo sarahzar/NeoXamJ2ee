@@ -5,7 +5,6 @@ import java.util.Date;
 
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
@@ -14,6 +13,11 @@ public class Evaluation implements Serializable {
 	
 	
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -419821100405710469L;
+
 	@EmbeddedId
 	private EvaluationPK id;	
 	
