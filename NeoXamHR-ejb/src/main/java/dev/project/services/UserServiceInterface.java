@@ -18,15 +18,15 @@ List<User> GetByKeyWord(String keyWord);
 
 List<User> GetAll();
 
-void addUser(User User);
+Boolean addUser(User User);
 
 void DeleteUser(int Id);
 
-void Update();
+void Update(User user) throws Exception;
 
 void UpdateImage(int Id, String ImageName);
 
-User Login(String Login,String Password);
+User Login(String Login,String Password) throws Exception;
 
 
 }
