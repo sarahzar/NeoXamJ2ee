@@ -2,6 +2,7 @@ package dev.project.services;
 
 import java.util.List;
 
+import javax.ejb.Local;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -11,6 +12,7 @@ import dev.project.common.StringCrypter;
 import dev.project.entities.Departement;
 import dev.project.entities.User;
 @Stateless
+@Local
 public class UserServiceImpl implements UserServiceInterface {
 	@PersistenceContext(unitName = "NeoXamHR-ejb")
 	EntityManager em;
