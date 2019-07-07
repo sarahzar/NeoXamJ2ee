@@ -13,7 +13,7 @@ import dev.project.entities.EvaluationPK;
 @Stateless
 public class EvaluationServiceImpl implements EvaluationServiceInterface {
 
-	@PersistenceContext(unitName = "neo")
+	@PersistenceContext(unitName = "NeoXamHR-ejb")
 	EntityManager em;
 
 	// method to get evaluation by its employee Id

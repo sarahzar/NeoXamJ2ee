@@ -12,7 +12,7 @@ import dev.project.entities.Action;
 @Stateless
 public class ActionServiceImpl implements ActionServiceInterface {
 
-	@PersistenceContext(unitName = "neo")
+	@PersistenceContext(unitName = "NeoXamHR-ejb")
 	EntityManager em;
 
 	// method to get action by its Id

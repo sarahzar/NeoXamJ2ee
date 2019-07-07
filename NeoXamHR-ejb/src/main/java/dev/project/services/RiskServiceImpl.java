@@ -10,7 +10,8 @@ import dev.project.entities.Risk;
 
 @Stateless
 public class RiskServiceImpl implements RiskServiceInterface {
-	@PersistenceContext(unitName = "neo")
+	
+	@PersistenceContext(unitName = "NeoXamHR-ejb")
 	EntityManager em;
 
 	// method to get risk by its code
