@@ -12,9 +12,15 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class User implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	protected long id;
@@ -32,15 +38,19 @@ public class User implements Serializable{
 	protected Address adresse;
 	
 	@OneToMany(mappedBy="user")
+	@JsonIgnore
 	private List<Diploma> diplomes;
 	
 	@OneToMany(mappedBy="user")
+	@JsonIgnore
 	private List<Language> langues;
 	
 	@OneToMany(mappedBy="user") 
+	@JsonIgnore
 	private List<Experience> experiences;
 	
 	@OneToMany(mappedBy="user")
+	@JsonIgnore
 	private List<Trainning> trainnings;
 	
 	public User() {

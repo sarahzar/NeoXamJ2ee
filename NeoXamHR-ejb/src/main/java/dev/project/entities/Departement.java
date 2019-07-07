@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Departement implements Serializable {
 	/**
@@ -21,6 +23,7 @@ public class Departement implements Serializable {
     private String libelle;
     
     @OneToMany(mappedBy="dep") 
+    @JsonIgnore
     private List<Employee> equipe;
     
     @ManyToOne

@@ -7,6 +7,10 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class Address implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int numero;
 	private String rue;
 	private String ville;

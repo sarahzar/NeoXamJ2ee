@@ -7,6 +7,11 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class EvaluationPK implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	private long empId;
 	
 	private String risqueId;

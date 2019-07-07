@@ -11,9 +11,15 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Employee extends User implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Date dateEmbauche;
 	private String poste;
 	private int numTel;
@@ -23,8 +29,10 @@ public class Employee extends User implements Serializable{
 	private Departement dep;
 	
 	@OneToMany(mappedBy="directeur")
+	@JsonIgnore
 	private List<Departement> ListdepAgerer;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy="chefDeProjet")
 	private List<Project> projetsAPiloter;
 	
