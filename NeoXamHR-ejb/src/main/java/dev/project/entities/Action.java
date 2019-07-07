@@ -13,6 +13,7 @@ public class Action {
 	@Id
 	private String code;
 	private Date date;
+	private String Label;
 	
 	@OneToMany(mappedBy="actionPreventive")
 	private List<Risk> risquesP;
@@ -31,6 +32,12 @@ public class Action {
 	}
 	public void setDate(Date date) {
 		this.date = date;
+	}
+	public String getLabel() {
+		return Label;
+	}
+	public void setLabel(String label) {
+		Label = label;
 	}
 
 

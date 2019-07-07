@@ -4,12 +4,15 @@ import java.io.Serializable;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 @Entity
 public class Risk implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8860026494446881380L;
 	@Id
 	private String code;
 	private String description;
