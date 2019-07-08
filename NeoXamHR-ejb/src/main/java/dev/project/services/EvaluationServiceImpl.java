@@ -3,6 +3,7 @@ package dev.project.services;
 import java.util.Date;
 import java.util.List;
 
+import javax.ejb.Local;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -11,6 +12,7 @@ import dev.project.entities.Evaluation;
 import dev.project.entities.EvaluationPK;
 
 @Stateless
+@Local
 public class EvaluationServiceImpl implements EvaluationServiceInterface {
 
 	@PersistenceContext(unitName = "NeoXamHR-ejb")

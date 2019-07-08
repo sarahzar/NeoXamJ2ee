@@ -17,13 +17,13 @@ import javax.ws.rs.core.Response;
 
 import javax.ws.rs.core.Response.Status;
 import dev.project.entities.Action;
-import dev.project.services.ActionServiceImpl;
+import dev.project.services.ActionServiceInterface;
 
 @Path("/action")
 public class ActionResource {
 	
-	
-	private ActionServiceImpl mod;
+	@EJB
+	ActionServiceInterface mod ;
 
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -60,7 +60,7 @@ public class ActionResource {
 		}
 		
 
-	/*@GET
+	@GET
 	@Path("{id}")
 	@Produces({ MediaType.APPLICATION_JSON })
 	public Response getByID(@PathParam(value = "id") String id) {
@@ -72,8 +72,8 @@ public class ActionResource {
 		return Response.status(Status.OK).entity(mod.getAllActions()).build();
 
 	}
-	*/
-/*	@GET
+	
+	@GET
 	@Path("{date}")
 	@Produces({ MediaType.APPLICATION_JSON })
 	public Response getByDate(@PathParam(value = "date") Date dd) {
@@ -85,10 +85,9 @@ public class ActionResource {
 		return Response.status(Status.OK).entity(mod.getAllActions()).build();
 
 	}
-	*/
+	
 	
 	@GET
-	@Path("/all")
 	@Produces({ MediaType.APPLICATION_JSON })
 	public Response ShowAll() {
 		List<Action> action = mod.getAllActions();

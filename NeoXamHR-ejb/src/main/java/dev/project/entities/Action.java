@@ -1,5 +1,6 @@
 package dev.project.entities;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
@@ -8,11 +9,16 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 @Entity
-public class Action {
+public class Action implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 937773213808441123L;
 	@Id
 	private String code;
 	private Date date;
+	private String Label;
 	
 	@OneToMany(mappedBy="actionPreventive")
 	private List<Risk> risquesP;
@@ -31,6 +37,12 @@ public class Action {
 	}
 	public void setDate(Date date) {
 		this.date = date;
+	}
+	public String getLabel() {
+		return Label;
+	}
+	public void setLabel(String label) {
+		Label = label;
 	}
 
 
