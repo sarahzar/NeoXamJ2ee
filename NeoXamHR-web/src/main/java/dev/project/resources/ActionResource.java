@@ -3,6 +3,7 @@ package dev.project.resources;
 import java.util.Date;
 import java.util.List;
 
+import javax.ejb.EJB;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -16,12 +17,13 @@ import javax.ws.rs.core.Response;
 
 import javax.ws.rs.core.Response.Status;
 import dev.project.entities.Action;
-import dev.project.services.ActionServiceImpl;
+import dev.project.services.ActionServiceInterface;
 
 @Path("/action")
 public class ActionResource {
 	
-	private ActionServiceImpl mod = new ActionServiceImpl();
+	@EJB
+	ActionServiceInterface mod ;
 
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -58,7 +60,7 @@ public class ActionResource {
 		}
 		
 
-	/*@GET
+	@GET
 	@Path("{id}")
 	@Produces({ MediaType.APPLICATION_JSON })
 	public Response getByID(@PathParam(value = "id") String id) {
@@ -70,8 +72,8 @@ public class ActionResource {
 		return Response.status(Status.OK).entity(mod.getAllActions()).build();
 
 	}
-	*/
-/*	@GET
+	
+	@GET
 	@Path("{date}")
 	@Produces({ MediaType.APPLICATION_JSON })
 	public Response getByDate(@PathParam(value = "date") Date dd) {
@@ -83,7 +85,7 @@ public class ActionResource {
 		return Response.status(Status.OK).entity(mod.getAllActions()).build();
 
 	}
-	*/
+	
 	
 	@GET
 	@Produces({ MediaType.APPLICATION_JSON })

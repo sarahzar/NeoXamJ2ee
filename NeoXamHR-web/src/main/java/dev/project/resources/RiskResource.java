@@ -2,6 +2,7 @@ package dev.project.resources;
 
 import java.util.List;
 
+import javax.ejb.EJB;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -15,12 +16,13 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
 import dev.project.entities.Risk;
-import dev.project.services.RiskServiceImpl;
+import dev.project.services.RiskServiceInterface;
 
 @Path("risk")
 public class RiskResource {
 
-	static RiskServiceImpl RiskBus = new RiskServiceImpl();
+	@EJB
+	 RiskServiceInterface RiskBus;
 
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
