@@ -20,9 +20,15 @@ public class ProjectServiceImpl implements ProjectServiceInterface{
 	}
 
 	@Override
-	public void update(long id) {
-		Project p=em.find(Project.class, id);
-		em.merge(p);
+	public void update(long id,Project p) {
+		Project proj=em.find(Project.class, id);
+		proj.setAvancement(p.getAvancement());
+		proj.setDateDeb(p.getDateDeb());
+		proj.setDateFin(p.getDateFin());
+		proj.setDesignation(p.getDesignation());
+		proj.setChefDeProjet(p.getChefDeProjet());
+		proj.setEmployeeAparticiper(p.getEmployeeAparticiper());
+		em.merge(proj);
 	}
 
 	@Override

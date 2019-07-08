@@ -1,5 +1,8 @@
 package dev.project.resources;
 
+import javax.ejb.EJB;
+import javax.ejb.LocalBean;
+import javax.ejb.Stateless;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -17,11 +20,14 @@ import dev.project.services.DepartementServiceImpl;
 import dev.project.services.DepartementServiceInterface;
 
 @Path("/departement")
+@Stateless
+@LocalBean
 public class DepartementResource {
-
-	DepartementServiceInterface metier = new DepartementServiceImpl();
+    @EJB
+	DepartementServiceInterface metier ;
 
 	@POST
+	@Path("/add")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response addDepartement(Departement d) {
 		if (metier.addDepartment(d)) {
@@ -31,6 +37,7 @@ public class DepartementResource {
 	}
 	
 	@GET
+	@Path("/all")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getAllDepartement() {
 		if(metier.getAllDepartements().isEmpty()) {

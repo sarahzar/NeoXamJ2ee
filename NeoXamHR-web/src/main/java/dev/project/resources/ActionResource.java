@@ -3,6 +3,7 @@ package dev.project.resources;
 import java.util.Date;
 import java.util.List;
 
+import javax.ejb.EJB;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -21,7 +22,8 @@ import dev.project.services.ActionServiceImpl;
 @Path("/action")
 public class ActionResource {
 	
-	private ActionServiceImpl mod = new ActionServiceImpl();
+	
+	private ActionServiceImpl mod;
 
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -86,6 +88,7 @@ public class ActionResource {
 	*/
 	
 	@GET
+	@Path("/all")
 	@Produces({ MediaType.APPLICATION_JSON })
 	public Response ShowAll() {
 		List<Action> action = mod.getAllActions();

@@ -8,6 +8,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 public class Trainning implements Serializable {
 	
@@ -23,6 +25,7 @@ public class Trainning implements Serializable {
 	private int year;
 	
 	@ManyToOne
+	@JsonBackReference
 	private User user;
 	
 	

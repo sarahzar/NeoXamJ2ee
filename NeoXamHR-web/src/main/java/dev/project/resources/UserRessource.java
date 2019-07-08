@@ -1,6 +1,8 @@
 package dev.project.resources;
 
 import javax.ejb.EJB;
+import javax.ejb.LocalBean;
+import javax.ejb.Stateless;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -21,6 +23,8 @@ import dev.project.services.UserServiceImpl;
 import dev.project.services.UserServiceInterface;
 
 @Path("/user")
+@Stateless
+@LocalBean
 public class UserRessource {
 	
 	@EJB

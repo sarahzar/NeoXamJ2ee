@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 public class Experience implements Serializable {
 	/**
@@ -25,6 +27,7 @@ public class Experience implements Serializable {
 	private String resume;
 	
 	@ManyToOne
+	@JsonBackReference
 	private User user;
 	
 	public Experience() {

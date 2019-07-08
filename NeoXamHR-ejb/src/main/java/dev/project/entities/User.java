@@ -1,12 +1,15 @@
 package dev.project.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Embeddable;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -37,21 +40,21 @@ public class User implements Serializable{
 	@Embedded
 	protected Address adresse;
 	
-	@OneToMany(mappedBy="user")
+	@OneToMany(mappedBy="user",fetch=FetchType.EAGER)
 	@JsonIgnore
-	private List<Diploma> diplomes;
+	private Set<Diploma> diplomes;
 	
-	@OneToMany(mappedBy="user")
+	@OneToMany(mappedBy="user",fetch=FetchType.EAGER)
 	@JsonIgnore
-	private List<Language> langues;
+	private Set<Language> langues;
 	
-	@OneToMany(mappedBy="user") 
+	@OneToMany(mappedBy="user",fetch=FetchType.EAGER) 
 	@JsonIgnore
-	private List<Experience> experiences;
+	private Set<Experience> experiences;
 	
-	@OneToMany(mappedBy="user")
+	@OneToMany(mappedBy="user",fetch=FetchType.EAGER)
 	@JsonIgnore
-	private List<Trainning> trainnings;
+	private Set<Trainning> trainnings;
 	
 	public User() {
 		// TODO Auto-generated constructor stub
@@ -133,49 +136,55 @@ public class User implements Serializable{
 
 
 
-	public List<Diploma> getDiplomes() {
+
+
+
+//	public List<Experience> getExperiences() {
+//		return experiences;
+//	}
+//
+//
+//
+//	public void setExperiences(List<Experience> experiences) {
+//		this.experiences = experiences;
+//	}
+
+
+
+
+
+
+	public Set<Diploma> getDiplomes() {
 		return diplomes;
 	}
 
 
 
-	public void setDiplomes(List<Diploma> diplomes) {
+	public void setDiplomes(Set<Diploma> diplomes) {
 		this.diplomes = diplomes;
 	}
 
 
 
-	public List<Language> getLangues() {
+	public Set<Language> getLangues() {
 		return langues;
 	}
 
 
 
-	public void setLangues(List<Language> langues) {
+	public void setLangues(Set<Language> langues) {
 		this.langues = langues;
 	}
 
 
 
-	public List<Experience> getExperiences() {
-		return experiences;
-	}
-
-
-
-	public void setExperiences(List<Experience> experiences) {
-		this.experiences = experiences;
-	}
-
-
-
-	public List<Trainning> getTrainnings() {
+	public Set<Trainning> getTrainnings() {
 		return trainnings;
 	}
 
 
 
-	public void setTrainnings(List<Trainning> trainnings) {
+	public void setTrainnings(Set<Trainning> trainnings) {
 		this.trainnings = trainnings;
 	}
 
@@ -189,6 +198,18 @@ public class User implements Serializable{
 
 	public void setId(long id) {
 		this.id = id;
+	}
+
+
+
+	public Set<Experience> getExperiences() {
+		return experiences;
+	}
+
+
+
+	public void setExperiences(Set<Experience> experiences) {
+		this.experiences = experiences;
 	}
 	
 	

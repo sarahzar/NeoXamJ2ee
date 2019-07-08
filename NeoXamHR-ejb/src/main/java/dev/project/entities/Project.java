@@ -3,8 +3,10 @@ package dev.project.entities;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -29,9 +31,9 @@ public class Project implements Serializable {
 	private String designation;
 	
 	
-	@ManyToMany(mappedBy="projetsParticipation")
+	@ManyToMany(mappedBy="projetsParticipation",fetch=FetchType.EAGER)
     @JsonIgnore
-	private List<Employee> employeeAparticiper;
+	private Set<Employee> employeeAparticiper;
 	
 	@ManyToOne
 	private Employee chefDeProjet;
@@ -84,19 +86,6 @@ public class Project implements Serializable {
 	}
 
 
-
-	public List<Employee> getEmployeeAparticiper() {
-		return employeeAparticiper;
-	}
-
-
-
-	public void setEmployeeAparticiper(List<Employee> employeeAparticiper) {
-		this.employeeAparticiper = employeeAparticiper;
-	}
-
-
-
 	public Employee getChefDeProjet() {
 		return chefDeProjet;
 	}
@@ -105,6 +94,18 @@ public class Project implements Serializable {
 
 	public void setChefDeProjet(Employee chefDeProjet) {
 		this.chefDeProjet = chefDeProjet;
+	}
+
+
+
+	public Set<Employee> getEmployeeAparticiper() {
+		return employeeAparticiper;
+	}
+
+
+
+	public void setEmployeeAparticiper(Set<Employee> employeeAparticiper) {
+		this.employeeAparticiper = employeeAparticiper;
 	}
 	
 	

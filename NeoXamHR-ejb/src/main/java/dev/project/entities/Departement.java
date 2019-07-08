@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -22,7 +23,7 @@ public class Departement implements Serializable {
     private int code;
     private String libelle;
     
-    @OneToMany(mappedBy="dep") 
+    @OneToMany(mappedBy="dep",fetch=FetchType.EAGER) 
     @JsonIgnore
     private List<Employee> equipe;
     

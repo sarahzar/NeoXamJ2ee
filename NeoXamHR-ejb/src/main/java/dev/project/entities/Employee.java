@@ -3,8 +3,10 @@ package dev.project.entities;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
@@ -28,22 +30,22 @@ public class Employee extends User implements Serializable{
 	@ManyToOne
 	private Departement dep;
 	
-	@OneToMany(mappedBy="directeur")
+	@OneToMany(mappedBy="directeur",fetch=FetchType.EAGER)
 	@JsonIgnore
-	private List<Departement> ListdepAgerer;
+	private Set<Departement> ListdepAgerer;
 	
 	@JsonIgnore
-	@OneToMany(mappedBy="chefDeProjet")
-	private List<Project> projetsAPiloter;
+	@OneToMany(mappedBy="chefDeProjet",fetch=FetchType.EAGER)
+	private Set<Project> projetsAPiloter;
 	
-	@ManyToMany	
+	@ManyToMany(fetch=FetchType.EAGER)	
 	@JoinTable(
 			name="EMP_PROJ" , 
 			joinColumns=@JoinColumn(name="emp_id" ,referencedColumnName="id"),
 		    inverseJoinColumns=@JoinColumn(name="proj_id" ,referencedColumnName="id")		
 			)
 
-	private List<Project> projetsParticipation;
+	private Set<Project> projetsParticipation;
 	
 	public Employee() {
 		// TODO Auto-generated constructor stub
@@ -102,35 +104,38 @@ public class Employee extends User implements Serializable{
 	}
 
 
-	public List<Departement> getListdepAgerer() {
+
+	public Set<Departement> getListdepAgerer() {
 		return ListdepAgerer;
 	}
 
 
-	public void setListdepAgerer(List<Departement> listdepAgerer) {
+	public void setListdepAgerer(Set<Departement> listdepAgerer) {
 		ListdepAgerer = listdepAgerer;
 	}
 
 
-	public List<Project> getProjetsAPiloter() {
+	public Set<Project> getProjetsAPiloter() {
 		return projetsAPiloter;
 	}
 
 
-	public void setProjetsAPiloter(List<Project> projetsAPiloter) {
+	public void setProjetsAPiloter(Set<Project> projetsAPiloter) {
 		this.projetsAPiloter = projetsAPiloter;
 	}
 
 
-	public List<Project> getProjetsParticipation() {
+	public Set<Project> getProjetsParticipation() {
 		return projetsParticipation;
 	}
 
 
-	public void setProjetsParticipation(List<Project> projetsParticipation) {
+	public void setProjetsParticipation(Set<Project> projetsParticipation) {
 		this.projetsParticipation = projetsParticipation;
 	}
-	
+    
+
+
 	
 
 }
