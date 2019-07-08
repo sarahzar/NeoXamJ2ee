@@ -17,11 +17,12 @@ import javax.ws.rs.core.Response.Status;
 
 import dev.project.entities.Evaluation;
 import dev.project.entities.EvaluationPK;
-import dev.project.services.EvaluationServiceImpl;
 import dev.project.services.EvaluationServiceInterface;
 
 @Path("evaluation")
 public class EvaluationResource {
+	
+	
 
 	@EJB
 	 EvaluationServiceInterface EvalBus ;
@@ -35,41 +36,51 @@ public class EvaluationResource {
 		return Response.status(Status.NOT_FOUND).build();
 
 	}
+	
 
-	/*@PUT
-	@Path("{EvaluationPK}")
+
+	@PUT
+	@Path("{empID}/{risqueID}")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response UpdateEval(@PathParam(value = "EvaluationPK") EvaluationPK code, Evaluation E) {
-		if (EvalBus.UpdateEval(code, E)) {
+	public Response UpdateEval(@PathParam(value = "empID") long IdE, @PathParam(value = "risqueID") String IdR,Evaluation E)
+		{
+		EvaluationPK evpk = new EvaluationPK();
+		evpk.setEmpId(IdE);
+		evpk.setRisqueId(IdR);
+		if (EvalBus.UpdateEval(evpk, E)) {
+			return Response.status(Status.OK).build();
+		}
+		return Response.status(Status.NOT_FOUND).build();
+	}
+
+	@DELETE
+		@Path("{empID}/{risqueID}")
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response DeleteEval(@PathParam(value = "empID") long IdE, @PathParam(value = "risqueID") String IdR) {
+EvaluationPK evpk = new EvaluationPK();
+		evpk.setEmpId(IdE);
+		evpk.setRisqueId(IdR);
+		if (EvalBus.DeleteEval(evpk)) {
 			return Response.status(Status.OK).build();
 		}
 		return Response.status(Status.NOT_FOUND).build();
 
-	}*/
+	}
 
-	/*@DELETE
-	@Path("{EvaluationPK}")
-	@Consumes(MediaType.APPLICATION_JSON)
-	public Response DeleteEval(@PathParam(value = "id") EvaluationPK id) {
-
-		if (EvalBus.DeleteEval(id)) {
-			return Response.status(Status.OK).build();
-		}
-		return Response.status(Status.NOT_FOUND).build();
-
-	}*/
-
-	/*@GET
-	@Path("{EvaluationPK}")
+	@GET
+	@Path("{empID}/{risqueID}")
 	@Produces({ MediaType.APPLICATION_JSON })
-	public Response getByID(@PathParam(value = "EvaluationPK") EvaluationPK id) {
-		Evaluation eval=EvalBus.getEvalById(id);
+	public Response getByID(@PathParam(value = "empID") long IdE, @PathParam(value = "risqueID") String IdR) {
+	EvaluationPK evpk = new EvaluationPK();
+		evpk.setEmpId(IdE);
+		evpk.setRisqueId(IdR);
+		Evaluation eval=EvalBus.getEvalById(evpk);
 		if (eval != null) {
-			return Response.status(Status.OK).entity(EvalBus.getEvalById(id)).build();
+			return Response.status(Status.OK).entity(EvalBus.getEvalById(evpk)).build();
 		}
-		return Response.status(Status.OK).entity(EvalBus.getEvalById(id)).build();
+		return Response.status(Status.OK).entity(EvalBus.getEvalById(evpk)).build();
 
-	}*/
+	}
 
 	@GET
 	@Path("{risqueId}")
