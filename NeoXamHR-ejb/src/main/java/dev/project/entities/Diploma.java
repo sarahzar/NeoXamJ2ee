@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 public class Diploma implements Serializable{
 	
@@ -23,6 +25,7 @@ public class Diploma implements Serializable{
 	private String etablissement;
 	
 	@ManyToOne
+	@JsonBackReference
 	private User user;
 	
 	public Diploma() {

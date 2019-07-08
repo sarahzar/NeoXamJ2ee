@@ -2,6 +2,7 @@ package dev.project.services;
 
 import java.util.List;
 
+import javax.ejb.Local;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -30,7 +31,7 @@ public class DepartementServiceImpl implements DepartementServiceInterface {
 
 	@Override
 	public List<Departement> getAllDepartements() {
-		return em.createQuery("select d from departement d", Departement.class).getResultList();
+		return em.createQuery("select d from Departement d", Departement.class).getResultList();
 	}
 
 	@Override

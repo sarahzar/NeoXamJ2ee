@@ -70,7 +70,7 @@ public class ActionServiceImpl implements ActionServiceInterface {
 		if (this.GetActionByCode(Id) != null) {
 
 			OldOne.setDate(A.getDate());
-			OldOne.setLabel(A.getLabel());
+		//	OldOne.setLabel(A.getLabel());
 			return true;
 		}
 

@@ -8,6 +8,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 public class Language implements Serializable {
 	/**
@@ -22,6 +24,7 @@ public class Language implements Serializable {
 	private int niveauParle;
 	
 	@ManyToOne
+	@JsonBackReference
 	private User user;
 	
 	public Language() {
