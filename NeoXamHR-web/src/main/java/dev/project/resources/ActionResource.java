@@ -4,6 +4,8 @@ import java.util.Date;
 import java.util.List;
 
 import javax.ejb.EJB;
+import javax.ejb.LocalBean;
+import javax.ejb.Stateless;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -20,6 +22,8 @@ import dev.project.entities.Action;
 import dev.project.services.ActionServiceInterface;
 
 @Path("/action")
+@Stateless
+@LocalBean
 public class ActionResource {
 	
 	@EJB
@@ -28,10 +32,9 @@ public class ActionResource {
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response addAction(Action A) {
-		if (mod.AddAction(A)) {
+		mod.add(A);
 			return Response.status(Status.CREATED).entity("l'action est créee ").build();
-		}
-		return Response.status(Status.NOT_FOUND).build();
+		
 
 	}
 	
@@ -39,10 +42,9 @@ public class ActionResource {
 	@Path("{id}")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response UpdateAction(@PathParam(value = "id") String id, Action act) {
-		if (mod.UpdateAction(id, act)) {
+//	       mod.update(id, act);
 			return Response.status(Status.OK).build();
-		}
-		return Response.status(Status.NOT_FOUND).build();
+		
 
 	}
 	
@@ -52,9 +54,9 @@ public class ActionResource {
 	public Response DeleteAct(@PathParam(value="id")String id ) {
 		
 				
-			if (mod.DeleteAction(id)) {
-				return Response.status(Status.OK).build();
-			}
+//			if (mod.DeleteAction(id)) {
+//				return Response.status(Status.OK).build();
+//			}
 			return Response.status(Status.NOT_FOUND).build();
 
 		}
@@ -64,12 +66,12 @@ public class ActionResource {
 	@Path("{id}")
 	@Produces({ MediaType.APPLICATION_JSON })
 	public Response getByID(@PathParam(value = "id") String id) {
-		Action AA=mod.GetActionByCode(id);
-		if (AA != null) {
-			return Response.status(Status.OK).entity(mod.GetActionByCode(id))
-					.build();
-		}
-		return Response.status(Status.OK).entity(mod.getAllActions()).build();
+//		Action AA=mod.GetActionByCode(id);
+//		if (AA != null) {
+//			return Response.status(Status.OK).entity(mod.GetActionByCode(id))
+//					.build();
+//		}
+		return Response.status(Status.OK).entity(mod.getAll()).build();
 
 	}
 	
@@ -77,22 +79,23 @@ public class ActionResource {
 	@Path("{date}")
 	@Produces({ MediaType.APPLICATION_JSON })
 	public Response getByDate(@PathParam(value = "date") Date dd) {
-		Action AA=mod.getActionByDate(dd);
-		if (AA != null) {
-			return Response.status(Status.OK).entity(mod.getActionByDate(dd))
-					.build();
-		}
-		return Response.status(Status.OK).entity(mod.getAllActions()).build();
+//		Action AA=mod.getActionByDate(dd);
+//		if (AA != null) {
+//			return Response.status(Status.OK).entity(mod.getActionByDate(dd))
+//					.build();
+//		}
+		return Response.status(Status.OK).entity(mod.getAll()).build();
 
 	}
 	
 	
 	@GET
+	@Path("/all")
 	@Produces({ MediaType.APPLICATION_JSON })
 	public Response ShowAll() {
-		List<Action> action = mod.getAllActions();
-		if (action.isEmpty()==false) {
-			return Response.status(Status.OK).entity( mod.getAllActions()).build();
+		
+		if (!mod.getAll().isEmpty()) {
+			return Response.status(Status.OK).entity( mod.getAll()).build();
 		}
 		return Response.status(Status.NOT_FOUND).build();
 

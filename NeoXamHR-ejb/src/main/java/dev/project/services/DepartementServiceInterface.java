@@ -2,16 +2,14 @@ package dev.project.services;
 
 import java.util.List;
 
+import javax.ejb.Local;
 import javax.ejb.Remote;
 
+import dev.project.dao.DepartementDaoInterface;
 import dev.project.entities.Departement;
 
-@Remote
-public interface DepartementServiceInterface {
+@Local
+public interface DepartementServiceInterface extends DepartementDaoInterface{
 
-	boolean addDepartment(Departement d);
-	Departement getDepartementById (int id);	
-	List<Departement> getAllDepartements ();
-	boolean deleteDepartement(int id);
-	boolean updateDepartement(int id, Departement d);
+	
 }

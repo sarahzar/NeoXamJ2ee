@@ -1,4 +1,4 @@
-package dev.project.services;
+package dev.project.dao;
 
 import java.util.List;
 

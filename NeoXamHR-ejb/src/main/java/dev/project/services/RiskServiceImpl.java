@@ -3,6 +3,7 @@ package dev.project.services;
 import java.util.List;
 
 import javax.ejb.Local;
+import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -10,7 +11,7 @@ import javax.persistence.PersistenceContext;
 import dev.project.entities.Risk;
 
 @Stateless
-@Local
+@LocalBean
 public class RiskServiceImpl implements RiskServiceInterface {
 
 	@PersistenceContext(unitName = "NeoXamHR-ejb")

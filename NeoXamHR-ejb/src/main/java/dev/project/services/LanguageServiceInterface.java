@@ -2,11 +2,12 @@ package dev.project.services;
 
 import java.util.List;
 
+import javax.ejb.Local;
 import javax.ejb.Remote;
 
 import dev.project.entities.*;
 
-@Remote
+@Local
 public interface LanguageServiceInterface {
 
 	List<Language> GetByUser(int IdUser);

@@ -3,6 +3,8 @@ package dev.project.resources;
 import java.util.List;
 
 import javax.ejb.EJB;
+import javax.ejb.LocalBean;
+import javax.ejb.Stateless;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -21,6 +23,8 @@ import dev.project.services.EvaluationServiceImpl;
 import dev.project.services.EvaluationServiceInterface;
 
 @Path("evaluation")
+@Stateless
+@LocalBean
 public class EvaluationResource {
 
 	@EJB
@@ -28,11 +32,12 @@ public class EvaluationResource {
 
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response addEval(Evaluation E) {
-		if (EvalBus.AddEval(E)) {
+	public Response addEval(Evaluation e) {
+		
+		    EvalBus.add(e);
 			return Response.status(Status.CREATED).entity("Evaluation is created").build();
-		}
-		return Response.status(Status.NOT_FOUND).build();
+		
+		
 
 	}
 
@@ -97,13 +102,13 @@ public class EvaluationResource {
 	
 	
 	@GET
-	
+	@Path("/all")
 	@Produces({ MediaType.APPLICATION_JSON })
 	public Response ShowAll() {
-		List<Evaluation> EV=EvalBus.getAllEval();
 		
-		if (EV.isEmpty()==false) {
-			return Response.status(Status.OK).entity(EvalBus.getAllEval()).build();
+		
+		if (EvalBus.getAll().isEmpty()==false) {
+			return Response.status(Status.OK).entity(EvalBus.getAll()).build();
 		}
 		return Response.status(Status.NOT_FOUND).build();
 

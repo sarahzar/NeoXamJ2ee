@@ -23,11 +23,12 @@ public class Departement implements Serializable {
     private int code;
     private String libelle;
     
-    @OneToMany(mappedBy="dep",fetch=FetchType.EAGER) 
-    @JsonIgnore
-    private List<Employee> equipe;
+//    @OneToMany(mappedBy="dep",fetch=FetchType.EAGER) 
+//    @JsonIgnore
+//    private List<Employee> equipe;
     
     @ManyToOne
+    @JsonIgnore
     private Employee directeur;
     
     
@@ -51,14 +52,14 @@ public class Departement implements Serializable {
 
 
 
-	public List<Employee> getEquipe() {
-		return equipe;
-	}
-
-
-	public void setEquipe(List<Employee> equipe) {
-		this.equipe = equipe;
-	}
+//	public List<Employee> getEquipe() {
+//		return equipe;
+//	}
+//
+//
+//	public void setEquipe(List<Employee> equipe) {
+//		this.equipe = equipe;
+//	}
 
 
 	public Employee getDirecteur() {

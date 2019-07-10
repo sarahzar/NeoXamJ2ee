@@ -71,9 +71,9 @@ public class ProjectResource {
 	@Path("/update/{id}")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response updateProject(@PathParam(value="id") int id) {
+	public Response updateProject(@PathParam(value="id") int id,Project p) {
 		
-		  //  metier.update(id);
+		     metier.update(id,p);
 			return Response.status(Status.OK).build();
 			
 		

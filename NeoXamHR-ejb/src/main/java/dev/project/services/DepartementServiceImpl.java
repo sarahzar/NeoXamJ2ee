@@ -2,58 +2,52 @@ package dev.project.services;
 
 import java.util.List;
 
+import javax.ejb.EJB;
 import javax.ejb.Local;
+import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import dev.project.dao.DepartementDaoInterface;
 import dev.project.entities.Departement;
 
 @Stateless
+@LocalBean
 public class DepartementServiceImpl implements DepartementServiceInterface {
-
-	@PersistenceContext(unitName = "NeoXamHR-ejb")
-	EntityManager em;
+	
+	@EJB
+	DepartementDaoInterface dao;
 
 	@Override
-	public boolean addDepartment(Departement d) {
-		em.persist(d);
-		if ((em.find(Departement.class, d.getCode())!= null)) {
-			return true;
-		}
-		return false;
+	public void add(Departement t) {
+		dao.add(t);
+		
 	}
 
 	@Override
-	public Departement getDepartementById(int id) {
-		return em.find(Departement.class, id);
+	public void update(long id, Departement t) {
+		dao.update(id, t);
+		
 	}
 
 	@Override
-	public List<Departement> getAllDepartements() {
-		return em.createQuery("select d from Departement d", Departement.class).getResultList();
+	public void delete(long id) {
+		dao.delete(id);
+		
 	}
 
 	@Override
-	public boolean deleteDepartement(int id) {
-		Departement d = em.find(Departement.class, id);
-		if (d != null) {
-			em.remove(d);
-			return true;
-		}
-		return false;
+	public Departement findById(long id) {
+		
+		return dao.findById(id);
 	}
 
 	@Override
-	public boolean updateDepartement(int id, Departement d) {
-		Departement depOld=em.find(Departement.class, id);
-		if (depOld != null) {
-			depOld.setDirecteur(d.getDirecteur());
-			depOld.setEquipe(d.getEquipe());
-			depOld.setLibelle(d.getLibelle());	
-			return true;
-		}
-		return false;
+	public List<Departement> getAll() {
+		
+		return dao.getAll();
 	}
 
+	
 }

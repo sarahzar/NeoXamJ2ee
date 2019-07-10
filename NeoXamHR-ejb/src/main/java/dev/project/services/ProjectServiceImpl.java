@@ -2,12 +2,14 @@ package dev.project.services;
 
 import java.util.List;
 
+import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import dev.project.entities.Project;
 
 @Stateless
+@LocalBean
 public class ProjectServiceImpl implements ProjectServiceInterface{
 	
 	@PersistenceContext(unitName = "NeoXamHR-ejb")

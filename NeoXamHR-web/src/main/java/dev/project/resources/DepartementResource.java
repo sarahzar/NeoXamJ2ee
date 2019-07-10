@@ -30,30 +30,30 @@ public class DepartementResource {
 	@Path("/add")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response addDepartement(Departement d) {
-		if (metier.addDepartment(d)) {
+		metier.add(d);
 			return Response.status(Status.CREATED).build();
-		}
-		return Response.status(Status.NOT_ACCEPTABLE).build();
+		
+		
 	}
 	
 	@GET
 	@Path("/all")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getAllDepartement() {
-		if(metier.getAllDepartements().isEmpty()) {
+		if(metier.getAll().isEmpty()) {
 			return Response.status(Status.NOT_FOUND).build();
 		}		
-		return Response.status(Status.OK).entity(metier.getAllDepartements()).build();
+		return Response.status(Status.OK).entity(metier.getAll()).build();
 	}
 	
 	@DELETE
 	@Path("{id}")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response deleteDepartement(@PathParam(value="id") int id) {
-		if(metier.deleteDepartement(id)) {
+		metier.delete(id);
 			return Response.status(Status.OK).build();
-		}
-		return Response.status(Status.NOT_FOUND).build();
+		
+		
 	}
 	
 	@PUT
@@ -62,10 +62,9 @@ public class DepartementResource {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response updateDepartement(@PathParam(value="id") int id, Departement d) {
 		
-		if(metier.updateDepartement(id, d)) {
+		metier.update(id, d);
 			return Response.status(Status.OK).build();
 			
-		}
-		return Response.status(Status.NOT_FOUND).build();
+		
 	}
 }

@@ -2,10 +2,11 @@ package dev.project.services;
 
 import java.util.List;
 
+import javax.ejb.Local;
 import javax.ejb.Remote;
 
 import dev.project.entities.User;
-@Remote
+@Local
 public interface UserServiceInterface {
 
 

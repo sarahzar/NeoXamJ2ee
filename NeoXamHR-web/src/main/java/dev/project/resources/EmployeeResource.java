@@ -74,9 +74,9 @@ public class EmployeeResource {
 	@Path("/update/{id}")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response updateEmployee(@PathParam(value="id") int id) {
+	public Response updateEmployee(@PathParam(value="id") int id,Employee e) {
 		
-		 //   metier.update(id);
+		    metier.update(id,e);
 			return Response.status(Status.OK).build();
 			
 		
