@@ -12,9 +12,7 @@ public class EvaluationPK implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	@Column(name = "empID")
 	private long empId;
-	@Column(name = "risqueID")
 	private String risqueId;
 	
 	public EvaluationPK() {

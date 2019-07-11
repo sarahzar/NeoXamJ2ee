@@ -40,33 +40,41 @@ public class EvaluationServiceImpl implements EvaluationServiceInterface {
 	}
 
 	@Override
-	public void add(Evaluation t) {
-		
-		dao.add(t);
-	}
-
-	@Override
-	public void update(long id, Evaluation t) {
-		dao.update(id, t);
+	public void addEvaluation(String codeRisk, long idEmp, Date d) {
+		dao.addEvaluation(codeRisk, idEmp, d);
 		
 	}
 
 	@Override
-	public void delete(long id) {
-		dao.delete(id);
+	public void updateEvaluation(String codeRisk, long idEmp, Evaluation e) {
+		dao.updateEvaluation(codeRisk, idEmp, e);
+		
 	}
 
 	@Override
-	public Evaluation findById(long id) {
+	public void deleteEvaluation(String codeRisk, long idEmp, Evaluation e) {
+		dao.deleteEvaluation(codeRisk, idEmp, e);
 		
-		return dao.findById(id);
 	}
 
 	@Override
-	public List<Evaluation> getAll() {
+	public List<Evaluation> getAllEvaluations() {
 		
-		return dao.getAll();
+		return dao.getAllEvaluations();
 	}
+
+	@Override
+	public Evaluation findEvaluation(long idEmp, String riskCode) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Evaluation findEvaluation(EvaluationPK pk) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	
 	
 }
