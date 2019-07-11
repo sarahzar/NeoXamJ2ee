@@ -35,7 +35,7 @@ public class EvaluationResource {
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response addEval(Evaluation e) {
 		
-		    EvalBus.add(e);
+//		    EvalBus.add(e);
 			return Response.status(Status.CREATED).entity("Evaluation is created").build();
 		
 		
@@ -49,12 +49,12 @@ public class EvaluationResource {
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response UpdateEval(@PathParam(value = "empID") long IdE, @PathParam(value = "risqueID") String IdR,Evaluation E)
 		{
-		EvaluationPK evpk = new EvaluationPK();
-		evpk.setEmpId(IdE);
-		evpk.setRisqueId(IdR);
-		if (EvalBus.UpdateEval(evpk, E)) {
-			return Response.status(Status.OK).build();
-		}
+//		EvaluationPK evpk = new EvaluationPK();
+//		evpk.setEmpId(IdE);
+//		evpk.setRisqueId(IdR);
+//		if (EvalBus.UpdateEval(evpk, E)) {
+//			return Response.status(Status.OK).build();
+//		}
 		return Response.status(Status.NOT_FOUND).build();
 	}
 
@@ -62,12 +62,12 @@ public class EvaluationResource {
 		@Path("{empID}/{risqueID}")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response DeleteEval(@PathParam(value = "empID") long IdE, @PathParam(value = "risqueID") String IdR) {
-EvaluationPK evpk = new EvaluationPK();
-		evpk.setEmpId(IdE);
-		evpk.setRisqueId(IdR);
-		if (EvalBus.DeleteEval(evpk)) {
-			return Response.status(Status.OK).build();
-		}
+//EvaluationPK evpk = new EvaluationPK();
+//		evpk.setEmpId(IdE);
+//		evpk.setRisqueId(IdR);
+//		if (EvalBus.DeleteEval(evpk)) {
+//			return Response.status(Status.OK).build();
+//		}
 		return Response.status(Status.NOT_FOUND).build();
 
 	}
@@ -76,39 +76,39 @@ EvaluationPK evpk = new EvaluationPK();
 	@Path("{empID}/{risqueID}")
 	@Produces({ MediaType.APPLICATION_JSON })
 	public Response getByID(@PathParam(value = "empID") long IdE, @PathParam(value = "risqueID") String IdR) {
-	EvaluationPK evpk = new EvaluationPK();
-		evpk.setEmpId(IdE);
-		evpk.setRisqueId(IdR);
-		Evaluation eval=EvalBus.getEvalById(evpk);
-		if (eval != null) {
-			return Response.status(Status.OK).entity(EvalBus.getEvalById(evpk)).build();
-		}
-		return Response.status(Status.OK).entity(EvalBus.getEvalById(evpk)).build();
-
+//	EvaluationPK evpk = new EvaluationPK();
+//		evpk.setEmpId(IdE);
+//		evpk.setRisqueId(IdR);
+//		Evaluation eval=EvalBus.getEvalById(evpk);
+//		if (eval != null) {
+//			return Response.status(Status.OK).entity(EvalBus.getEvalById(evpk)).build();
+//		}
+	//	return Response.status(Status.OK).entity(EvalBus.getEvalById(evpk)).build();
+return null;
 	}
 
 	@GET
 	@Path("{risqueId}")
 	@Produces({ MediaType.APPLICATION_JSON })
 	public Response getByActCons(@PathParam(value = "risqueId") String cod) {
-		List<Evaluation> EV=EvalBus.getEvalByRisk(cod);
-		if (EV.isEmpty()==false) {
-			return Response.status(Status.OK).entity(EvalBus.getEvalByRisk(cod)).build();
-		}
-		return Response.status(Status.OK).entity(EvalBus.getEvalByRisk(cod)).build();
-
+//		List<Evaluation> EV=EvalBus.getEvalByRisk(cod);
+//		if (EV.isEmpty()==false) {
+//			return Response.status(Status.OK).entity(EvalBus.getEvalByRisk(cod)).build();
+//		}
+//		return Response.status(Status.OK).entity(EvalBus.getEvalByRisk(cod)).build();
+return null;
 	}
 	
 	@GET
 	@Path("{empId}")
 	@Produces({ MediaType.APPLICATION_JSON })
 	public Response getByPrevCons(@PathParam(value = "empId") Long cod) {
-		List<Evaluation> EV=EvalBus.getEvalByEmp(cod);
-		if (EV.isEmpty()==false) {
-			return Response.status(Status.OK).entity(EvalBus.getEvalByEmp(cod)).build();
-		}
-		return Response.status(Status.OK).entity(EvalBus.getEvalByEmp(cod)).build();
-
+//		List<Evaluation> EV=EvalBus.getEvalByEmp(cod);
+//		if (EV.isEmpty()==false) {
+//			return Response.status(Status.OK).entity(EvalBus.getEvalByEmp(cod)).build();
+//		}
+//		return Response.status(Status.OK).entity(EvalBus.getEvalByEmp(cod)).build();
+return null;
 	}
 	
 	
@@ -118,8 +118,8 @@ EvaluationPK evpk = new EvaluationPK();
 	public Response ShowAll() {
 		
 		
-		if (EvalBus.getAll().isEmpty()==false) {
-			return Response.status(Status.OK).entity(EvalBus.getAll()).build();
+		if (EvalBus.getAllEvaluations().isEmpty()==false) {
+			return Response.status(Status.OK).entity(EvalBus.getAllEvaluations()).build();
 		}
 		return Response.status(Status.NOT_FOUND).build();
 

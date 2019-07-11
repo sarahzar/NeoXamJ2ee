@@ -2,6 +2,7 @@
     <wb-module deploy-name="NeoXamHR-ejb">
         <wb-resource deploy-path="/" source-path="/src/main/java"/>
         <wb-resource deploy-path="/" source-path="/src/main/java/dev/project/resources"/>
+        <wb-resource deploy-path="/" source-path="/src/main/resources"/>
         <property name="java-output-path" value="/NeoXamHR-ejb/target/classes"/>
     </wb-module>
 </project-modules>
