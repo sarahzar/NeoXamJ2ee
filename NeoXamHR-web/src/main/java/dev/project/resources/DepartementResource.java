@@ -49,7 +49,7 @@ public class DepartementResource {
 	@DELETE
 	@Path("{id}")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response deleteDepartement(@PathParam(value="id") int id) {
+	public Response deleteDepartement(@PathParam(value="id") Long id) {
 		metier.delete(id);
 			return Response.status(Status.OK).build();
 		
@@ -60,7 +60,7 @@ public class DepartementResource {
 	@Path("{id}")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response updateDepartement(@PathParam(value="id") int id, Departement d) {
+	public Response updateDepartement(@PathParam(value="id") Long id, Departement d) {
 		
 		metier.update(id, d);
 			return Response.status(Status.OK).build();

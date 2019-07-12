@@ -20,7 +20,7 @@ public class Departement implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	@Id
-    private int code;
+    private Long code;
     private String libelle;
     
 //    @OneToMany(mappedBy="dep",fetch=FetchType.EAGER) 
@@ -37,10 +37,10 @@ public class Departement implements Serializable {
 	}
     
     
-	public int getCode() {
+	public Long getCode() {
 		return code;
 	}
-	public void setCode(int code) {
+	public void setCode(Long code) {
 		this.code = code;
 	}
 	public String getLibelle() {
