@@ -3,12 +3,8 @@ package dev.project.services;
 import java.util.List;
 
 import javax.ejb.EJB;
-import javax.ejb.Local;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-
 import dev.project.dao.RiskDaoInterface;
 import dev.project.entities.Risk;
 
@@ -27,7 +23,7 @@ public class RiskServiceImpl implements RiskServiceInterface {
 
 	@Override
 	public void update(long id, Risk t) {
-		//dao.update(id, t);
+		dao.update(id, t);
 		
 	}
 
@@ -57,8 +53,17 @@ public class RiskServiceImpl implements RiskServiceInterface {
 
 	@Override
 	public Risk findById(long id) {
-		// TODO Auto-generated method stub
-		return null;
+		return dao.findById(id);
+	}
+
+	@Override
+	public List<Risk> getRiskByConsAct(Long IdCAct) {
+		return dao.getRiskByConsAct(IdCAct);
+	}
+
+	@Override
+	public List<Risk> getRiskByPrevAct(Long IdPrAct) {
+		return dao.getRiskByPrevAct(IdPrAct);
 	}
 
 	

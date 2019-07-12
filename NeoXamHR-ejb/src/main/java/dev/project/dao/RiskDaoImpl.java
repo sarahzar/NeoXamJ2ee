@@ -6,7 +6,6 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import dev.project.entities.Action;
 import dev.project.entities.Risk;
 
 @Stateless
@@ -21,6 +20,7 @@ public class RiskDaoImpl implements RiskDaoInterface {
 	em.persist(t);
 		
 	}
+	
 
 	@Override
 	public void updateRisk(String code, Risk t) {
@@ -57,15 +57,36 @@ public class RiskDaoImpl implements RiskDaoInterface {
 
 	@Override
 	public void update(long id, Risk r) {
-		// TODO Auto-generated method stub
+		Risk OldOne = em.find(Risk.class, id);
+		if (OldOne != null) {
+
+			OldOne.setActionConsecutive(r.getActionConsecutive());
+			OldOne.setActionPreventive(r.getActionPreventive());
+			OldOne.setDescription(r.getDescription());
+			OldOne.setFait(r.getFait());
+		
+		}
 		
 	}
 
 
 	@Override
 	public Risk findById(long id ) {
-		return null;
+		return em.find(Risk.class, id);
 		
+	}
+
+	@Override
+	public List<Risk> getRiskByConsAct(Long IdCAct) {
+		
+		 return em.createQuery("from Risk r where r.actionConsecutive =: IdCA",Risk.class).
+				 setParameter("IdCA", IdCAct).getResultList();
+	}
+
+	@Override
+	public List<Risk> getRiskByPrevAct(Long IdPrAct) {
+		 return em.createQuery("from Risk r where r.actionPreventive  =: IdPA",Risk.class).
+				 setParameter("IdPA", IdPrAct).getResultList();
 	}
 
 }
