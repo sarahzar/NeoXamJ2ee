@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Evaluation implements Serializable {
 	
@@ -22,10 +24,12 @@ public class Evaluation implements Serializable {
 	private EvaluationPK id;	
 	
 	@ManyToOne
+	@JsonIgnore
 	@JoinColumn(name="empId",nullable = false, insertable = false, updatable = false)
 	private Employee emp;
 	
 	@ManyToOne
+	@JsonIgnore
 	@JoinColumn(name="risqueId",nullable = false, insertable = false, updatable = false)
 	private Risk risque;
 	

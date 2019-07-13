@@ -20,7 +20,7 @@ import javax.ws.rs.core.Response.Status;
 import dev.project.entities.Risk;
 import dev.project.services.RiskServiceInterface;
 
-@Path("risk")
+@Path("/risk")
 @Stateless
 @LocalBean
 public class RiskResource {
@@ -100,7 +100,7 @@ public class RiskResource {
 	
 	
 	@GET
-	
+	@Path("/all")
 	@Produces({ MediaType.APPLICATION_JSON })
 	public Response ShowAll() {
 		

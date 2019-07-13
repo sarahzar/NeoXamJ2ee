@@ -21,7 +21,7 @@ import dev.project.entities.Evaluation;
 import dev.project.entities.EvaluationPK;
 import dev.project.services.EvaluationServiceInterface;
 
-@Path("evaluation")
+@Path("/evaluation")
 @Stateless
 @LocalBean
 public class EvaluationResource {

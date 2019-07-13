@@ -31,12 +31,12 @@ public class Employee extends User implements Serializable{
 	@ManyToOne
 	private Departement dep;
 	
-	@OneToMany(mappedBy="directeur",fetch=FetchType.EAGER)
+	@OneToMany(fetch=FetchType.EAGER)
 	@JsonIgnore
 	private Set<Departement> ListdepAgerer;
 	
 	@JsonIgnore
-	@OneToMany(mappedBy="chefDeProjet",fetch=FetchType.EAGER)
+	@OneToMany(fetch=FetchType.EAGER)
 	private Set<Project> projetsAPiloter;
 	
 	@ManyToMany(fetch=FetchType.EAGER)	

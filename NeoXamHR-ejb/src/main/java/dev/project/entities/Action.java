@@ -24,11 +24,11 @@ public class Action implements Serializable {
 	private Date date;
 	private String Label;
 	
-	@OneToMany(mappedBy="actionPreventive",fetch=FetchType.EAGER)
+	@OneToMany(fetch=FetchType.EAGER)
 	@JsonIgnore
 	private Set<Risk> risquesP;
 	
-	@OneToMany(mappedBy="actionConsecutive",fetch=FetchType.EAGER)
+	@OneToMany(fetch=FetchType.EAGER)
 	@JsonIgnore
 	private Set<Risk> risquesC;
 	
