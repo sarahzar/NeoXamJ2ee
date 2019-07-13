@@ -20,7 +20,7 @@ public class Action implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	@Id
-	private String code;
+	private long code;
 	private Date date;
 	private String Label;
 	
@@ -36,10 +36,10 @@ public class Action implements Serializable {
 		
 	}
 	
-	public String getCode() {
+	public long getCode() {
 		return code;
 	}
-	public void setCode(String code) {
+	public void setCode(long code) {
 		this.code = code;
 	}
 	public Date getDate() {

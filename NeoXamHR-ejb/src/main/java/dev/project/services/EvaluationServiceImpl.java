@@ -40,19 +40,19 @@ public class EvaluationServiceImpl implements EvaluationServiceInterface {
 	}
 
 	@Override
-	public void addEvaluation(String codeRisk, long idEmp, Date d) {
+	public void addEvaluation(long codeRisk, long idEmp, Date d) {
 		dao.addEvaluation(codeRisk, idEmp, d);
 		
 	}
 
 	@Override
-	public void updateEvaluation(String codeRisk, long idEmp, Evaluation e) {
+	public void updateEvaluation(long codeRisk, long idEmp, Evaluation e) {
 		dao.updateEvaluation(codeRisk, idEmp, e);
 		
 	}
 
 	@Override
-	public void deleteEvaluation(String codeRisk, long idEmp, Evaluation e) {
+	public void deleteEvaluation(long codeRisk, long idEmp, Evaluation e) {
 		dao.deleteEvaluation(codeRisk, idEmp, e);
 		
 	}
@@ -64,7 +64,7 @@ public class EvaluationServiceImpl implements EvaluationServiceInterface {
 	}
 
 	@Override
-	public Evaluation findEvaluation(long idEmp, String riskCode) {
+	public Evaluation findEvaluation(long idEmp, long riskCode) {
 		// TODO Auto-generated method stub
 		return null;
 	}

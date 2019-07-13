@@ -14,7 +14,7 @@ public class Risk implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	@Id
-	private Long code;
+	private long code;
 	private String description;
 	private String fait;
 	
@@ -29,16 +29,16 @@ public class Risk implements Serializable {
 	}
 	
 	
-	public Risk(Long code, String description, String fait) {
+	public Risk(long code, String description, String fait) {
 		super();
 		this.code = code;
 		this.description = description;
 		this.fait = fait;
 	}
-	public Long getCode() {
+	public long getCode() {
 		return code;
 	}
-	public void setCode(Long code) {
+	public void setCode(long code) {
 		this.code = code;
 	}
 	public String getDescription() {
