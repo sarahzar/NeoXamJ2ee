@@ -2,7 +2,6 @@ package dev.project.entities;
 
 import java.io.Serializable;
 
-import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
 @Embeddable
@@ -13,7 +12,7 @@ public class EvaluationPK implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	private long empId;
-	private String risqueId;
+	private long risqueId;
 	
 	public EvaluationPK() {
 		// TODO Auto-generated constructor stub
@@ -27,11 +26,11 @@ public class EvaluationPK implements Serializable {
 		this.empId = empId;
 	}
 
-	public String getRisqueId() {
+	public long getRisqueId() {
 		return risqueId;
 	}
 
-	public void setRisqueId(String risqueId) {
+	public void setRisqueId(long risqueId) {
 		this.risqueId = risqueId;
 	}
 
@@ -40,7 +39,7 @@ public class EvaluationPK implements Serializable {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + (int) (empId ^ (empId >>> 32));
-		result = prime * result + ((risqueId == null) ? 0 : risqueId.hashCode());
+		result = prime * result + (int) (risqueId ^ (risqueId >>> 32));
 		return result;
 	}
 
@@ -55,14 +54,13 @@ public class EvaluationPK implements Serializable {
 		EvaluationPK other = (EvaluationPK) obj;
 		if (empId != other.empId)
 			return false;
-		if (risqueId == null) {
-			if (other.risqueId != null)
-				return false;
-		} else if (!risqueId.equals(other.risqueId))
+		if (risqueId != other.risqueId)
 			return false;
 		return true;
 	}
+
 	
+
 	
 
 }

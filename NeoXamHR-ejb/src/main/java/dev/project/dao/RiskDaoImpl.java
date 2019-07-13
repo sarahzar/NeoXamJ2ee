@@ -77,14 +77,14 @@ public class RiskDaoImpl implements RiskDaoInterface {
 	}
 
 	@Override
-	public List<Risk> getRiskByConsAct(Long IdCAct) {
+	public List<Risk> getRiskByConsAct(long IdCAct) {
 		
 		 return em.createQuery("from Risk r where r.actionConsecutive =: IdCA",Risk.class).
 				 setParameter("IdCA", IdCAct).getResultList();
 	}
 
 	@Override
-	public List<Risk> getRiskByPrevAct(Long IdPrAct) {
+	public List<Risk> getRiskByPrevAct(long IdPrAct) {
 		 return em.createQuery("from Risk r where r.actionPreventive  =: IdPA",Risk.class).
 				 setParameter("IdPA", IdPrAct).getResultList();
 	}

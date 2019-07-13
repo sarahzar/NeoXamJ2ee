@@ -39,13 +39,13 @@ public class EvaluationDaoImpl implements EvaluationDaoInterface {
 	}
 
 	@Override
-	public void addEvaluation(String codeRisk, long idEmp, Date d) {
+	public void addEvaluation(long codeRisk, long idEmp, Date d) {
 		
 		Evaluation e=new Evaluation();
 		e.setDate(d);
 		Risk risk=em.find(Risk.class, codeRisk);
 		Employee emp=em.find(Employee.class, idEmp);
-	    if(risk.getCode()!=null && emp.getId()!=0) {
+	    if(risk.getCode()!=0 && emp.getId()!=0) {
 	    	EvaluationPK pk=new EvaluationPK();
 	    	pk.setEmpId(idEmp);
 	    	pk.setRisqueId(codeRisk);
@@ -56,7 +56,7 @@ public class EvaluationDaoImpl implements EvaluationDaoInterface {
 	}
 
 	@Override
-	public void updateEvaluation(String codeRisk, long idEmp, Evaluation e) {
+	public void updateEvaluation(long codeRisk, long idEmp, Evaluation e) {
 		
 		Evaluation oldEval = findEvaluation(idEmp, codeRisk);
 		if (oldEval != null) {
@@ -67,7 +67,7 @@ public class EvaluationDaoImpl implements EvaluationDaoInterface {
 	}
 
 	@Override
-	public void deleteEvaluation(String codeRisk, long idEmp, Evaluation e) {
+	public void deleteEvaluation(long codeRisk, long idEmp, Evaluation e) {
 		// TODO Auto-generated method stub
 		Evaluation oldEval = findEvaluation(idEmp, codeRisk);
 		if (oldEval != null) {
@@ -82,7 +82,7 @@ public class EvaluationDaoImpl implements EvaluationDaoInterface {
 	}
 
 	@Override
-	public Evaluation findEvaluation(long idEmp, String riskCode) {
+	public Evaluation findEvaluation(long idEmp, long riskCode) {
 		
 		List<Evaluation> evaluations = em
 				.createQuery("from Evaluation e where e.id.empId=:idEmp and e.id.risqueId=:riskCode", Evaluation.class)

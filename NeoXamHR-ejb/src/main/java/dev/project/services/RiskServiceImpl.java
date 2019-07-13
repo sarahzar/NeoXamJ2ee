@@ -57,12 +57,12 @@ public class RiskServiceImpl implements RiskServiceInterface {
 	}
 
 	@Override
-	public List<Risk> getRiskByConsAct(Long IdCAct) {
+	public List<Risk> getRiskByConsAct(long IdCAct) {
 		return dao.getRiskByConsAct(IdCAct);
 	}
 
 	@Override
-	public List<Risk> getRiskByPrevAct(Long IdPrAct) {
+	public List<Risk> getRiskByPrevAct(long IdPrAct) {
 		return dao.getRiskByPrevAct(IdPrAct);
 	}
 
