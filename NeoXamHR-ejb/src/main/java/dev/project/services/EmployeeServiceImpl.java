@@ -49,6 +49,12 @@ public class EmployeeServiceImpl implements EmployeesServiceInterface{
 		
 		return dao.getAll();
 	}
+
+	@Override
+	public List<Employee> getEmployeByDepartement(Long id) {
+		
+		return dao.getEmployeByDepartement(id);
+	}
 	
 	
 
