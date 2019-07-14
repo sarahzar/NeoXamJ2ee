@@ -34,12 +34,14 @@ public class UserDaoImpl implements UserDaoInterface {
 		
 		try {
 			
-			User u=em.find(User.class, id);
-			System.out.println("old user: "+u);
-			if(t.getAdresse()!=null) {
-			u.setAdresse(t.getAdresse());
+			User u = em.find(User.class, id);
+			System.out.println("old user: " + u);
+			if (t.getAdresse() != null) {
+				u.setAdresse(t.getAdresse());
 			}
+			
 			u.setCompleted(t.isCompleted());
+			
 			u.setDiplomes(t.getDiplomes());
 			u.setExperiences(t.getExperiences());
 			u.setLangues(t.getLangues());

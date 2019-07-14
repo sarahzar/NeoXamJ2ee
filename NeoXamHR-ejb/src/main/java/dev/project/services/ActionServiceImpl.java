@@ -53,7 +53,7 @@ public class ActionServiceImpl implements ActionServiceInterface {
 	@Override
 	public Action findById(long id) {
 	
-		return null;
+		return dao.findById(id);
 	}
 
 	@Override

@@ -61,6 +61,16 @@ public class EmployeeResource {
 		return Response.status(Status.OK).entity(metier.findById(id)).build();
 	}
 	
+	@GET
+	@Path("/getByDepartement/{id}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response findByDepartement(@PathParam(value = "id") Long id) {
+		if(metier.getEmployeByDepartement(id)==null) {
+			return Response.status(Status.NOT_FOUND).build();
+		}		
+		return Response.status(Status.OK).entity(metier.getEmployeByDepartement(id)).build();
+	}
+	
 	@DELETE
 	@Path("/delete/{id}")
 	@Consumes(MediaType.APPLICATION_JSON)

@@ -1,5 +1,6 @@
 package dev.project.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -83,6 +84,14 @@ public class EmployeeDaoImpl implements EmployeeDaoInterface {
 		proj.getEmployeeAparticiper().add(emp);
 		this.update(empId, emp);
 		daoProj.update(projId, proj);
-		
+	}
+	public List<Employee> getEmployeByDepartement(Long id) {
+		List<Employee> myList = new ArrayList<Employee>();
+		for (Employee e:em.createQuery("from Employee e",Employee.class).getResultList()){
+			if(e.getId()==id)
+				myList.add(e);
+		}
+		System.out.println(myList.get(0).getNom());
+		return myList;	
 	}
 }

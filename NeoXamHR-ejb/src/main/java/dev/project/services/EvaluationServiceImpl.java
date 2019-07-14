@@ -34,16 +34,16 @@ public class EvaluationServiceImpl implements EvaluationServiceInterface {
 	}
 
 	@Override
-	public List<Evaluation> getEvalByRisk(String ris) {
+	public List<Evaluation> getEvalByRisk(long ris) {
 		
 		return dao.getEvalByRisk(ris);
 	}
 
-	@Override
-	public void addEvaluation(long codeRisk, long idEmp, Date d) {
-		dao.addEvaluation(codeRisk, idEmp, d);
-		
-	}
+//	@Override
+//	public void addEvaluation(long codeRisk, long idEmp, Date d) {
+//		dao.addEvaluation(codeRisk, idEmp, d);
+//		
+//	}
 
 	@Override
 	public void updateEvaluation(long codeRisk, long idEmp, Evaluation e) {
@@ -52,8 +52,8 @@ public class EvaluationServiceImpl implements EvaluationServiceInterface {
 	}
 
 	@Override
-	public void deleteEvaluation(long codeRisk, long idEmp, Evaluation e) {
-		dao.deleteEvaluation(codeRisk, idEmp, e);
+	public void deleteEvaluation(long codeRisk, long idEmp) {
+		dao.deleteEvaluation(codeRisk, idEmp);
 		
 	}
 
@@ -65,14 +65,20 @@ public class EvaluationServiceImpl implements EvaluationServiceInterface {
 
 	@Override
 	public Evaluation findEvaluation(long idEmp, long riskCode) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return dao.findEvaluation(idEmp, riskCode);
 	}
 
 	@Override
-	public Evaluation findEvaluation(EvaluationPK pk) {
+	public Evaluation findEvaluationPK(EvaluationPK pk) {
 		// TODO Auto-generated method stub
-		return null;
+		return dao.findEvaluationPK(pk);
+	}
+
+	@Override
+	public void addEvaluation(long codeRisk, long idEmp, Evaluation e) {
+		dao.addEvaluation(codeRisk, idEmp, e);
+		
 	}
 
 	

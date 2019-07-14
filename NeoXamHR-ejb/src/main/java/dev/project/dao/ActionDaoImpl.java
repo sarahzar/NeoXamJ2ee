@@ -42,7 +42,7 @@ public class ActionDaoImpl implements ActionDaoInterface {
 	@Override
 	public Action findById(long id) {
 	
-		return null;
+		return em.find(Action.class, id);
 	}
 
 	@Override

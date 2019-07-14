@@ -29,20 +29,20 @@ public class EvaluationDaoImpl implements EvaluationDaoInterface {
 	@Override
 	public List<Evaluation> getEvalByEmp(long id) {
 		
-		return em.createQuery("from Evaluation e WHERE e.empId=:idemp", Evaluation.class).setParameter("idemp", id).getResultList();
+		return em.createQuery("from Evaluation e WHERE e.id.empId=:idemp", Evaluation.class).setParameter("idemp", id).getResultList();
 	}
 
 	@Override
-	public List<Evaluation> getEvalByRisk(String ris) {
+	public List<Evaluation> getEvalByRisk(long ris) {
 		
-		return em.createQuery("from Evaluation e WHERE e.risque.code=:riscode", Evaluation.class).setParameter("riscode", ris).getResultList();
+		return em.createQuery("from Evaluation e WHERE e.id.risqueId=:riscode", Evaluation.class).setParameter("riscode", ris).getResultList();
 	}
 
 	@Override
-	public void addEvaluation(long codeRisk, long idEmp, Date d) {
+	public void addEvaluation(long codeRisk, long idEmp, Evaluation e) {
 		
-		Evaluation e=new Evaluation();
-		e.setDate(d);
+		//Evaluation e=new Evaluation();
+		//e.setDate(d);
 		Risk risk=em.find(Risk.class, codeRisk);
 		Employee emp=em.find(Employee.class, idEmp);
 	    if(risk.getCode()!=0 && emp.getId()!=0) {
@@ -50,6 +50,7 @@ public class EvaluationDaoImpl implements EvaluationDaoInterface {
 	    	pk.setEmpId(idEmp);
 	    	pk.setRisqueId(codeRisk);
 	    	e.setId(pk);
+	    	
 	    	em.persist(e);
 	    }
 		
@@ -61,13 +62,14 @@ public class EvaluationDaoImpl implements EvaluationDaoInterface {
 		Evaluation oldEval = findEvaluation(idEmp, codeRisk);
 		if (oldEval != null) {
 			oldEval.setDate(e.getDate());
-			em.merge(oldEval);
+			oldEval.setRisqueGlobal(e.getRisqueGlobal());
+//			em.merge(oldEval);
 	}
 		
 	}
 
 	@Override
-	public void deleteEvaluation(long codeRisk, long idEmp, Evaluation e) {
+	public void deleteEvaluation(long codeRisk, long idEmp) {
 		// TODO Auto-generated method stub
 		Evaluation oldEval = findEvaluation(idEmp, codeRisk);
 		if (oldEval != null) {
@@ -83,21 +85,15 @@ public class EvaluationDaoImpl implements EvaluationDaoInterface {
 
 	@Override
 	public Evaluation findEvaluation(long idEmp, long riskCode) {
-		
-		List<Evaluation> evaluations = em
-				.createQuery("from Evaluation e where e.id.empId=:idEmp and e.id.risqueId=:riskCode", Evaluation.class)
-				.setParameter("idEmp", idEmp).setParameter("riskCode", riskCode).getResultList();
-		if (!evaluations.isEmpty()) {
 
-			return evaluations.get(0);
-		}
-
-		return null;
+		return em.createQuery("from Evaluation e where e.id.empId=:idEmp and e.id.risqueId =: riskCode", Evaluation.class)
+		.setParameter("idEmp", idEmp).setParameter("riskCode", riskCode).getSingleResult();
 				
+		
 	}
 
 	@Override
-	public Evaluation findEvaluation(EvaluationPK pk) {
+	public Evaluation findEvaluationPK(EvaluationPK pk) {
 		// TODO Auto-generated method stub
 		return em.find(Evaluation.class, pk);
 	}
