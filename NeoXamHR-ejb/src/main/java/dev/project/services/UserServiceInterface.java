@@ -1,33 +1,14 @@
 package dev.project.services;
 
-import java.util.List;
+
 
 import javax.ejb.Local;
-import javax.ejb.Remote;
+import dev.project.dao.UserDaoInterface;
 
-import dev.project.entities.User;
 @Local
-public interface UserServiceInterface {
+public interface UserServiceInterface extends UserDaoInterface {
 
 
-
-// 
-
-User GetById(int Id);
-
-List<User> GetByKeyWord(String keyWord);
-
-List<User> GetAll();
-
-Boolean addUser(User User);
-
-void DeleteUser(int Id);
-
-void Update(User user) throws Exception;
-
-void UpdateImage(int Id, String ImageName);
-
-User Login(String Login,String Password) throws Exception;
 
 
 }

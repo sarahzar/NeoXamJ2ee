@@ -49,6 +49,12 @@ public class EmployeeServiceImpl implements EmployeesServiceInterface{
 		
 		return dao.getAll();
 	}
+
+	@Override
+	public void affecterEmpProj(long empId, long projId) {
+		dao.affecterEmpProj(empId, projId);
+		
+	}
 	
 	
 

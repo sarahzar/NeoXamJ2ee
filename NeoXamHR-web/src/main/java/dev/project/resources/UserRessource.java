@@ -31,45 +31,45 @@ public class UserRessource {
 	UserServiceInterface service ;
 
 	@POST
+	@Path("/add")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response addUser(User user) {
-		if (service.addUser(user)) {
+		service.add(user);
 			return Response.status(Status.CREATED).build();
-		}
-		return Response.status(Status.NOT_ACCEPTABLE).build();
+		
+		
 	}
 	
 	@GET
+	@Path("/all")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getAllUser() {
-		if(service.GetAll().isEmpty()) {
+		if(service.getAll().isEmpty()) {
 			return Response.status(Status.NOT_FOUND).build();
 		}		
-		return Response.status(Status.OK).entity(service.GetAll()).build();
+		return Response.status(Status.OK).entity(service.getAll()).build();
 	}
 	
 	@GET
-	@Path("{id}")
+	@Path("/find/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getUser(@PathParam(value="id") int Id) {
-		User user= service.GetById(Id);
-		if( user== null ) {
-			return Response.status(Status.NOT_FOUND).build();
-		}		
+		User user= service.findById(Id);
+//		if( user== null ) {
+//			return Response.status(Status.NOT_FOUND).build();
+//		}		
 		return Response.status(Status.OK).entity(user).build();
 	}
 	
 	@DELETE
-	@Path("{id}")
+	@Path("/delete/{id}")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response deleteUser(@PathParam(value="id") int id) {
 	
-		try	{
-			service.DeleteUser(id);
+		
+			service.delete(id);
 			return Response.status(Status.OK).build();
-		}catch (Exception ex) {
-			return Response.status(Status.NOT_FOUND).build();
-		}
+	
 		
 		
 	}
@@ -77,34 +77,22 @@ public class UserRessource {
 	@PUT
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response updateUser( User user) {
-		try {
-			service.Update(user);
+	@Path("/update/{id}")
+	public Response updateUser(@PathParam("id") long id, User user) {
+		
+			service.update(id, user);
 			return Response.status(Status.OK).entity(user).build();
-		}catch(Exception ex) {
-			return Response.status(Status.NOT_FOUND).build();
-		}
+		
 		
 		
 	}
 	
 	@POST
-	@Path("/login")
+	@Path("/login/{login}/{password}")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response login( User user) {
-		try {
-		User user1 =	service.Login(user.getEmail(), user.getPassword());
-		if (user != null) {
-			return Response.status(Status.OK).entity(user1).build();
-		}else {
-			return Response.status(Status.UNAUTHORIZED).build();
-		}
-		
-		}catch(Exception ex) {
-			return Response.status(Status.NOT_FOUND).build();
-		}
-		
-		
-	}
+	public Response login(@PathParam("login") String login,@PathParam("password") String password) {
+		User user1 =	service.Login(login, password);	
+	    return Response.status(Status.OK).entity(user1).build();
+}
 }

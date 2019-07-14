@@ -23,9 +23,10 @@ public class Departement implements Serializable {
     private Long code;
     private String libelle;
     
-//    @OneToMany(mappedBy="dep",fetch=FetchType.EAGER) 
-//    @JsonIgnore
-//    private List<Employee> equipe;
+    @OneToMany(fetch=FetchType.EAGER) 
+    @JsonIgnore
+    private List<Employee> equipe;
+    
     
     @ManyToOne
     @JsonIgnore

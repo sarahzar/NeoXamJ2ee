@@ -81,4 +81,16 @@ public class EmployeeResource {
 			
 		
 	}
+	
+	@PUT
+	@Path("/affecter/{idemp}/{idproj}")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response AffecterEmployee(@PathParam(value="idemp") int idemp,@PathParam(value="idemp") int idproj) {
+		
+		    metier.affecterEmpProj(idemp, idproj);
+			return Response.status(Status.OK).build();
+			
+		
+	}
 }

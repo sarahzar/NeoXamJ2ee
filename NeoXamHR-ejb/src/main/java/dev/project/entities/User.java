@@ -40,19 +40,19 @@ public class User implements Serializable{
 	@Embedded
 	protected Address adresse;
 	
-	@OneToMany(mappedBy="user",fetch=FetchType.EAGER)
+	@OneToMany(fetch=FetchType.EAGER)
 	@JsonIgnore
 	private Set<Diploma> diplomes;
 	
-	@OneToMany(mappedBy="user",fetch=FetchType.EAGER)
+	@OneToMany(fetch=FetchType.EAGER)
 	@JsonIgnore
 	private Set<Language> langues;
 	
-	@OneToMany(mappedBy="user",fetch=FetchType.EAGER) 
+	@OneToMany(fetch=FetchType.EAGER) 
 	@JsonIgnore
 	private Set<Experience> experiences;
 	
-	@OneToMany(mappedBy="user",fetch=FetchType.EAGER)
+	@OneToMany(fetch=FetchType.EAGER)
 	@JsonIgnore
 	private Set<Trainning> trainnings;
 	

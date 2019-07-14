@@ -2,17 +2,24 @@ package dev.project.dao;
 
 import java.util.List;
 
+import javax.ejb.EJB;
+import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import dev.project.entities.Address;
 import dev.project.entities.Employee;
+import dev.project.entities.Project;
 @Stateless
+@LocalBean
 public class EmployeeDaoImpl implements EmployeeDaoInterface {
 
 	@PersistenceContext(unitName = "NeoXamHR-ejb")
 	EntityManager em;
+	
+	@EJB
+	ProjetDaoInterface daoProj;
 
 	@Override
 	public void add(Employee t) {
@@ -66,5 +73,16 @@ public class EmployeeDaoImpl implements EmployeeDaoInterface {
 	@Override
 	public Employee findById(long id) {	
 		return em.find(Employee.class, id);
+	}
+
+	@Override
+	public void affecterEmpProj(long empId, long projId) {
+		Employee emp=em.find(Employee.class, empId);
+		Project proj=em.find(Project.class, projId);
+		emp.getProjetsParticipation().add(proj);
+		proj.getEmployeeAparticiper().add(emp);
+		this.update(empId, emp);
+		daoProj.update(projId, proj);
+		
 	}
 }

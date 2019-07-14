@@ -40,12 +40,12 @@ public class Employee extends User implements Serializable{
 	private Set<Project> projetsAPiloter;
 	
 	@ManyToMany(fetch=FetchType.EAGER)	
-	@JoinTable(
-			name="EMP_PROJ" , 
-			joinColumns=@JoinColumn(name="emp_id" ,referencedColumnName="id"),
-		    inverseJoinColumns=@JoinColumn(name="proj_id" ,referencedColumnName="id")		
-			)
-
+//	@JoinTable(
+//			name="EMP_PROJ" , 
+//			joinColumns=@JoinColumn(name="emp_id" ,referencedColumnName="id"),
+//		    inverseJoinColumns=@JoinColumn(name="proj_id" ,referencedColumnName="id")		
+//			)
+//    @JsonIgnore
 	private Set<Project> projetsParticipation;
 	
 	public Employee() {
