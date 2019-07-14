@@ -17,7 +17,7 @@ public class DepartementDaoImpl implements DepartementDaoInterface {
 	@Override
 	public void add(Departement t) {
 		em.persist(t);
-		System.out.println("dep code"+t.getCode());
+	//	System.out.println("dep code"+t.getCode());
 	}
 
 	@Override

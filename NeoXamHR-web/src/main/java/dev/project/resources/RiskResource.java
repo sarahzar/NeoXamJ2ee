@@ -41,9 +41,9 @@ public class RiskResource {
 	@Path("{code}")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response UpdateRisk(@PathParam(value = "code") long code, Risk R) {
-		//RiskBus.updateRisk(code, R);
+		
 		RiskBus.update(code, R);
-			return Response.status(Status.OK).build();
+			return Response.status(Status.OK).entity("Risk is updated").build();
 		
 
 	}
@@ -51,10 +51,10 @@ public class RiskResource {
 	@DELETE
 	@Path("{code}")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response DeleteRisk(@PathParam(value = "id") long id) {
+	public Response DeleteRisk(@PathParam(value = "code") long id) {
 
 		RiskBus.delete(id);
-			return Response.status(Status.OK).build();
+			return Response.status(Status.OK).entity("Risk is deleted").build();
 		
 
 	}
@@ -72,32 +72,32 @@ public class RiskResource {
 
 	}
 
-	@GET
-	@Path("{actionConsecutive_code}")
-	@Produces({ MediaType.APPLICATION_JSON })
-	public Response getByActCons(@PathParam(value = "actionConsecutive_code") long cod) {
-		List<Risk> AA = RiskBus.getRiskByConsAct(cod);
-		
-		if (AA.isEmpty()==false) {
-			return Response.status(Status.OK).entity(RiskBus.getRiskByConsAct(cod)).build();
-		}
-		return Response.status(Status.OK).entity(RiskBus.getRiskByConsAct(cod)).build();
-
-	}
-	
-	@GET
-	@Path("{actionPreventive_code}")
-	@Produces({ MediaType.APPLICATION_JSON })
-	public Response getByPrevCons(@PathParam(value = "actionPreventive_code") long cod) {
-		List<Risk> AA = RiskBus.getRiskByPrevAct(cod);
-		
-		if (AA.isEmpty()==false) {
-			return Response.status(Status.OK).entity(RiskBus.getRiskByPrevAct(cod)).build();
-		}
-		return Response.status(Status.OK).entity(RiskBus.getRiskByPrevAct(cod)).build();
-	
-	}
-	
+//	@GET
+//	@Path("/AC/{actionConsecutive_code}")
+//	@Produces({ MediaType.APPLICATION_JSON })
+//	public Response getByActCons(@PathParam(value = "actionConsecutive_code") long cod) {
+//		List<Risk> AA = RiskBus.getRiskByConsAct(cod);
+//		
+//		if (AA.isEmpty()==false) {
+//			return Response.status(Status.OK).entity(RiskBus.getRiskByConsAct(cod)).build();
+//		}
+//		return Response.status(Status.OK).entity(RiskBus.getRiskByConsAct(cod)).build();
+//
+//	}
+//	
+//	@GET
+//	@Path("/AP/{actionPreventive_code}")
+//	@Produces({ MediaType.APPLICATION_JSON })
+//	public Response getByPrevCons(@PathParam(value = "actionPreventive_code") long cod) {
+//		List<Risk> AA = RiskBus.getRiskByPrevAct(cod);
+//		
+//		if (AA.isEmpty()==false) {
+//			return Response.status(Status.OK).entity(RiskBus.getRiskByPrevAct(cod)).build();
+//		}
+//		return Response.status(Status.OK).entity(RiskBus.getRiskByPrevAct(cod)).build();
+//	
+//	}
+//	
 	
 	@GET
 	@Path("/all")
