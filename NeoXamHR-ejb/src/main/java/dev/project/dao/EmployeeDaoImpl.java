@@ -49,12 +49,7 @@ public class EmployeeDaoImpl implements EmployeeDaoInterface {
 		emp.setSalaire(e.getSalaire());
 		emp.setRole(e.getRole());
 		emp.setDep(e.getDep());
-		emp.setDiplomes(e.getDiplomes());
-		emp.setExperiences(e.getExperiences());
-		emp.setLangues(e.getLangues());
-		emp.setListdepAgerer(e.getListdepAgerer());
-		emp.setProjetsAPiloter(e.getProjetsAPiloter());
-		emp.setProjetsParticipation(e.getProjetsParticipation());
+//		emp.setListdepAgerer(e.getListdepAgerer());
 		emp.setRegisterDate(e.getRegisterDate());
 		
 		em.merge(emp);
@@ -77,12 +72,10 @@ public class EmployeeDaoImpl implements EmployeeDaoInterface {
 	}
 
 	@Override
-	public void affecterEmpProj(long empId, long projId) {
+	public void affecterEmpProj(long empId,long projId) {
 		Employee emp=em.find(Employee.class, empId);
 		Project proj=em.find(Project.class, projId);
-		emp.getProjetsParticipation().add(proj);
 		proj.getEmployeeAparticiper().add(emp);
-		this.update(empId, emp);
 		daoProj.update(projId, proj);
 	}
 	public List<Employee> getEmployeByDepartement(Long id) {
@@ -93,5 +86,13 @@ public class EmployeeDaoImpl implements EmployeeDaoInterface {
 		}
 		System.out.println(myList.get(0).getNom());
 		return myList;	
+	}
+
+	@Override
+	public List<Employee> getEmployeesByProject(long idProj) {
+		Project proj=em.find(Project.class, idProj);
+		List<Employee> employeesByProj=new ArrayList<>();
+		employeesByProj.addAll(proj!=null?proj.getEmployeeAparticiper():null);
+		return employeesByProj;
 	}
 }

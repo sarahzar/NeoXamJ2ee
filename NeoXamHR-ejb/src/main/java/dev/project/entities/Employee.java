@@ -17,8 +17,9 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-public class Employee extends User implements Serializable{
+public class Employee extends User {
 	
+
 	/**
 	 * 
 	 */
@@ -31,22 +32,10 @@ public class Employee extends User implements Serializable{
 	@ManyToOne
 	private Departement dep;
 	
-	@OneToMany(fetch=FetchType.EAGER)
-	@JsonIgnore
-	private Set<Departement> ListdepAgerer;
-	
-	@JsonIgnore
-	@OneToMany(fetch=FetchType.EAGER)
-	private Set<Project> projetsAPiloter;
-	
-	@ManyToMany(fetch=FetchType.EAGER)	
-//	@JoinTable(
-//			name="EMP_PROJ" , 
-//			joinColumns=@JoinColumn(name="emp_id" ,referencedColumnName="id"),
-//		    inverseJoinColumns=@JoinColumn(name="proj_id" ,referencedColumnName="id")		
-//			)
-//    @JsonIgnore
-	private Set<Project> projetsParticipation;
+//	@OneToMany(fetch=FetchType.EAGER)
+//	@JsonIgnore
+//	private Set<Departement> ListdepAgerer;
+
 	
 	public Employee() {
 		// TODO Auto-generated constructor stub
@@ -106,35 +95,35 @@ public class Employee extends User implements Serializable{
 
 
 
-	public Set<Departement> getListdepAgerer() {
-		return ListdepAgerer;
-	}
+//	public Set<Departement> getListdepAgerer() {
+//		return ListdepAgerer;
+//	}
+//
+//
+//	public void setListdepAgerer(Set<Departement> listdepAgerer) {
+//		ListdepAgerer = listdepAgerer;
+//	}
 
-
-	public void setListdepAgerer(Set<Departement> listdepAgerer) {
-		ListdepAgerer = listdepAgerer;
-	}
-
-
-	public Set<Project> getProjetsAPiloter() {
-		return projetsAPiloter;
-	}
-
-
-	public void setProjetsAPiloter(Set<Project> projetsAPiloter) {
-		this.projetsAPiloter = projetsAPiloter;
-	}
-
-
-	public Set<Project> getProjetsParticipation() {
-		return projetsParticipation;
-	}
-
-
-	public void setProjetsParticipation(Set<Project> projetsParticipation) {
-		this.projetsParticipation = projetsParticipation;
-	}
-    
+//
+//	public Set<Project> getProjetsAPiloter() {
+//		return projetsAPiloter;
+//	}
+//
+//
+//	public void setProjetsAPiloter(Set<Project> projetsAPiloter) {
+//		this.projetsAPiloter = projetsAPiloter;
+//	}
+//
+//
+//	public Set<Project> getProjetsParticipation() {
+//		return projetsParticipation;
+//	}
+//
+//
+//	public void setProjetsParticipation(Set<Project> projetsParticipation) {
+//		this.projetsParticipation = projetsParticipation;
+//	}
+//    
 
 
 	

@@ -24,13 +24,13 @@ public class Action implements Serializable {
 	private Date date;
 	private String Label;
 	
-	@OneToMany(fetch=FetchType.EAGER)
-	@JsonIgnore
-	private Set<Risk> risquesP;
-	
-	@OneToMany(fetch=FetchType.EAGER)
-	@JsonIgnore
-	private Set<Risk> risquesC;
+//	@OneToMany(fetch=FetchType.EAGER)
+//	@JsonIgnore
+//	private Set<Risk> risquesP;
+//	
+//	@OneToMany(fetch=FetchType.EAGER)
+//	@JsonIgnore
+//	private Set<Risk> risquesC;
 	
 	public Action() {
 		
@@ -54,18 +54,18 @@ public class Action implements Serializable {
 	public void setLabel(String label) {
 		Label = label;
 	}
-	public Set<Risk> getRisquesP() {
-		return risquesP;
-	}
-	public void setRisquesP(Set<Risk> risquesP) {
-		this.risquesP = risquesP;
-	}
-	public Set<Risk> getRisquesC() {
-		return risquesC;
-	}
-	public void setRisquesC(Set<Risk> risquesC) {
-		this.risquesC = risquesC;
-	}
+//	public Set<Risk> getRisquesP() {
+//		return risquesP;
+//	}
+//	public void setRisquesP(Set<Risk> risquesP) {
+//		this.risquesP = risquesP;
+//	}
+//	public Set<Risk> getRisquesC() {
+//		return risquesC;
+//	}
+//	public void setRisquesC(Set<Risk> risquesC) {
+//		this.risquesC = risquesC;
+//	}
 	
 
 

@@ -40,21 +40,6 @@ public class User implements Serializable{
 	@Embedded
 	protected Address adresse;
 	
-	@OneToMany(fetch=FetchType.EAGER)
-	@JsonIgnore
-	private Set<Diploma> diplomes;
-	
-	@OneToMany(fetch=FetchType.EAGER)
-	@JsonIgnore
-	private Set<Language> langues;
-	
-	@OneToMany(fetch=FetchType.EAGER) 
-	@JsonIgnore
-	private Set<Experience> experiences;
-	
-	@OneToMany(fetch=FetchType.EAGER)
-	@JsonIgnore
-	private Set<Trainning> trainnings;
 	
 	public User() {
 		// TODO Auto-generated constructor stub
@@ -154,39 +139,39 @@ public class User implements Serializable{
 
 
 
-	public Set<Diploma> getDiplomes() {
-		return diplomes;
-	}
-
-
-
-	public void setDiplomes(Set<Diploma> diplomes) {
-		this.diplomes = diplomes;
-	}
-
-
-
-	public Set<Language> getLangues() {
-		return langues;
-	}
-
-
-
-	public void setLangues(Set<Language> langues) {
-		this.langues = langues;
-	}
-
-
-
-	public Set<Trainning> getTrainnings() {
-		return trainnings;
-	}
-
-
-
-	public void setTrainnings(Set<Trainning> trainnings) {
-		this.trainnings = trainnings;
-	}
+//	public Set<Diploma> getDiplomes() {
+//		return diplomes;
+//	}
+//
+//
+//
+//	public void setDiplomes(Set<Diploma> diplomes) {
+//		this.diplomes = diplomes;
+//	}
+//
+//
+//
+//	public Set<Language> getLangues() {
+//		return langues;
+//	}
+//
+//
+//
+//	public void setLangues(Set<Language> langues) {
+//		this.langues = langues;
+//	}
+//
+//
+//
+//	public Set<Trainning> getTrainnings() {
+//		return trainnings;
+//	}
+//
+//
+//
+//	public void setTrainnings(Set<Trainning> trainnings) {
+//		this.trainnings = trainnings;
+//	}
 
 
 
@@ -201,16 +186,16 @@ public class User implements Serializable{
 	}
 
 
-
-	public Set<Experience> getExperiences() {
-		return experiences;
-	}
-
-
-
-	public void setExperiences(Set<Experience> experiences) {
-		this.experiences = experiences;
-	}
+//
+//	public Set<Experience> getExperiences() {
+//		return experiences;
+//	}
+//
+//
+//
+//	public void setExperiences(Set<Experience> experiences) {
+//		this.experiences = experiences;
+//	}
 	
 	
 

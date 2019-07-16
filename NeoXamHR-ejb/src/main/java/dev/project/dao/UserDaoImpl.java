@@ -42,10 +42,10 @@ public class UserDaoImpl implements UserDaoInterface {
 			
 			u.setCompleted(t.isCompleted());
 			
-			u.setDiplomes(t.getDiplomes());
-			u.setExperiences(t.getExperiences());
-			u.setLangues(t.getLangues());
-			u.setTrainnings(t.getTrainnings());
+//			u.setDiplomes(t.getDiplomes());
+//			u.setExperiences(t.getExperiences());
+//			u.setLangues(t.getLangues());
+//			u.setTrainnings(t.getTrainnings());
 			u.setEmail(t.getEmail());
 			u.setNom(t.getNom());
 			u.setPrenom(t.getPrenom());
@@ -96,12 +96,20 @@ public class UserDaoImpl implements UserDaoInterface {
 	@Override
 	public User Login(String Login, String Password)  {
 		
-
-		List<User> users = em.createQuery("SELECT t FROM User t where t.email=:email", User.class)
-				.setParameter("email", Login).getResultList();
+		try {
+			String crypredPassword=StringCrypter.encrypt(Password);
+		    System.out.println("Password user"+crypredPassword);
+		List<User> users = em.createQuery("SELECT t FROM User t where t.email=:email and t.password=:pwd", User.class)
+				.setParameter("email", Login)
+				.setParameter("pwd", crypredPassword)
+				.getResultList();
 		if (!users.isEmpty()) {
-
+             
 			return users.get(0);
+		}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		return null;
 	}

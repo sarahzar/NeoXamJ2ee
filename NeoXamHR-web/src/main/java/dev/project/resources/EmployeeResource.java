@@ -14,10 +14,8 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
-
-import dev.project.entities.Departement;
 import dev.project.entities.Employee;
-import dev.project.services.DepartementServiceInterface;
+import dev.project.entities.Project;
 import dev.project.services.EmployeesServiceInterface;
 
 @Path("/employee")
@@ -27,7 +25,6 @@ public class EmployeeResource {
 	
 	@EJB
 	EmployeesServiceInterface metier ;
-	
 	
 	
 	@POST
@@ -61,6 +58,15 @@ public class EmployeeResource {
 		return Response.status(Status.OK).entity(metier.findById(id)).build();
 	}
 	
+	@POST
+	@Path("/addEmpProj/{idemp}/{idproj}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response addEmpP(@PathParam(value = "idemp") int idemp,@PathParam(value = "idproj") int idproj) {
+		metier.affecterEmpProj(idemp,idproj);
+	return Response.status(Status.OK).build();
+	}
+	
+	
 	@GET
 	@Path("/getByDepartement/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -88,19 +94,19 @@ public class EmployeeResource {
 		
 		    metier.update(id,e);
 			return Response.status(Status.OK).build();
-			
-		
+				
 	}
 	
-	@PUT
-	@Path("/affecter/{idemp}/{idproj}")
-	@Consumes(MediaType.APPLICATION_JSON)
+	@GET
+	@Path("/getEmpsByProj/{idproj}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response AffecterEmployee(@PathParam(value="idemp") int idemp,@PathParam(value="idemp") int idproj) {
-		
-		    metier.affecterEmpProj(idemp, idproj);
-			return Response.status(Status.OK).build();
-			
-		
+	public Response getEmployeByProject(@PathParam(value = "idproj") Long idproj) {
+		if(metier.getEmployeesByProject(idproj)==null) {
+			return Response.status(Status.NOT_FOUND).build();
+		}		
+		return Response.status(Status.OK).entity(metier.getEmployeesByProject(idproj)).build();
 	}
+	
+	
+
 }

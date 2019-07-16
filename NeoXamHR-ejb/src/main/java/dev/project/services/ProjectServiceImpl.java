@@ -2,51 +2,56 @@ package dev.project.services;
 
 import java.util.List;
 
+import javax.ejb.EJB;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
+import dev.project.dao.ProjetDaoInterface;
 import dev.project.entities.Project;
 
 @Stateless
 @LocalBean
 public class ProjectServiceImpl implements ProjectServiceInterface{
 	
-	@PersistenceContext(unitName = "NeoXamHR-ejb")
-	EntityManager em;
+	@EJB
+	private ProjetDaoInterface dao;
 
 	@Override
-	public void add(Project t) {
-		em.persist(t);
-		
+	public void addProjectDirector(long idProj, long idDir) {
+		dao.addProjectDirector(idProj, idDir);
+
 	}
 
 	@Override
-	public void update(long id,Project p) {
-		Project proj=em.find(Project.class, id);
-		proj.setAvancement(p.getAvancement());
-		proj.setDateDeb(p.getDateDeb());
-		proj.setDateFin(p.getDateFin());
-		proj.setDesignation(p.getDesignation());
-		proj.setChefDeProjet(p.getChefDeProjet());
-		proj.setEmployeeAparticiper(p.getEmployeeAparticiper());
-		em.merge(proj);
+	public void add(Project t) {
+		dao.add(t);
+
+	}
+
+	@Override
+	public void update(long id, Project t) {
+		dao.update(id, t);
+
 	}
 
 	@Override
 	public void delete(long id) {
-		Project p=em.find(Project.class, id);
-		em.remove(p);		
-	}
+		dao.delete(id);
 
-	@Override
-	public List<Project> getAll() {
-		return em.createQuery("from Project p",Project.class).getResultList();
 	}
 
 	@Override
 	public Project findById(long id) {
-		return em.find(Project.class, id);
+
+		return dao.findById(id);
 	}
 
+	@Override
+	public List<Project> getAll() {
+
+		return dao.getAll();
+	}
+	
+	
+
+	
 }

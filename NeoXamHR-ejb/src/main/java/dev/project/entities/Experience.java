@@ -27,7 +27,7 @@ public class Experience implements Serializable {
 	private String resume;
 	
 	@ManyToOne
-	@JsonBackReference
+	//@JsonBackReference
 	private User user;
 	
 	public Experience() {

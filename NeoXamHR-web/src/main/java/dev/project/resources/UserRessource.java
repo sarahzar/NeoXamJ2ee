@@ -88,6 +88,19 @@ public class UserRessource {
 	}
 	
 	@POST
+	@Path("/loginUser/{login}/{password}")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response loginUser(@PathParam("login") String login,@PathParam("password") String password) {
+		User user1 =	service.Login(login, password);	
+		if(user1==null) {
+			
+			return Response.status(Status.NOT_FOUND).build();
+		}
+	    return Response.status(Status.OK).entity(user1).build();
+}
+	
+	@POST
 	@Path("/login/{login}/{password}")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)

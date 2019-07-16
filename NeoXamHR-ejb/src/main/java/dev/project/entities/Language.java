@@ -24,7 +24,7 @@ public class Language implements Serializable {
 	private int niveauParle;
 	
 	@ManyToOne
-	@JsonBackReference
+	//@JsonBackReference
 	private User user;
 	
 	public Language() {

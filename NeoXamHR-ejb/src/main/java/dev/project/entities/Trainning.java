@@ -25,7 +25,7 @@ public class Trainning implements Serializable {
 	private int year;
 	
 	@ManyToOne
-	@JsonBackReference
+	//@JsonBackReference
 	private User user;
 	
 	

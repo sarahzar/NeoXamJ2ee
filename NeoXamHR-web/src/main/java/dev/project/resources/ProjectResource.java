@@ -78,5 +78,14 @@ public class ProjectResource {
 			
 		
 	}
+	
+	@POST
+	@Path("/addProjDir/{idproj}/{idchef}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response addProjChef(@PathParam(value = "idproj") int idproj,@PathParam(value = "idchef") int idchef) {
+		metier.addProjectDirector(idproj, idchef);
+	return Response.status(Status.OK).build();
+	}
+	
 
 }

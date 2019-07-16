@@ -11,6 +11,7 @@ import javax.persistence.PersistenceContext;
 import dev.project.dao.EmployeeDaoInterface;
 import dev.project.entities.Address;
 import dev.project.entities.Employee;
+import dev.project.entities.Project;
 
 @Stateless
 @LocalBean
@@ -57,6 +58,12 @@ public class EmployeeServiceImpl implements EmployeesServiceInterface{
 		
 	public List<Employee> getEmployeByDepartement(Long id) {		
 		return dao.getEmployeByDepartement(id);
+	}
+
+	@Override
+	public List<Employee> getEmployeesByProject(long idProj) {
+		
+		return dao.getEmployeesByProject(idProj);
 	}
 	
 	
