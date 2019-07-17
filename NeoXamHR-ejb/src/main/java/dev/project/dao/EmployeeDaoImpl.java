@@ -9,6 +9,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import dev.project.common.StringCrypter;
 import dev.project.entities.Address;
 import dev.project.entities.Employee;
 import dev.project.entities.Project;
@@ -24,12 +25,20 @@ public class EmployeeDaoImpl implements EmployeeDaoInterface {
 
 	@Override
 	public void add(Employee t) {
-		em.persist(t);
+		try {
+			t.setPassword(StringCrypter.encrypt(t.getPassword()));
+			em.persist(t);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		
 	}
 
 	@Override
 	public void update(long id,Employee e) {
+		try {
 		Employee emp=em.find(Employee.class, id);
 		Address a=new Address();
 		a.setCodePostale(e.getAdresse().getCodePostale());
@@ -42,8 +51,8 @@ public class EmployeeDaoImpl implements EmployeeDaoInterface {
 		emp.setEmail(e.getEmail());
 		emp.setDateEmbauche(e.getDateEmbauche());
 		emp.setNom(e.getNom());
-		emp.setNumTel(e.getNumTel());
-		emp.setPassword(e.getPassword());
+		emp.setNumTel(e.getNumTel());		
+	    emp.setPassword(StringCrypter.encrypt(e.getPassword()));		
 		emp.setPrenom(e.getPrenom());
 		emp.setPoste(e.getPoste());
 		emp.setSalaire(e.getSalaire());
@@ -53,6 +62,10 @@ public class EmployeeDaoImpl implements EmployeeDaoInterface {
 		emp.setRegisterDate(e.getRegisterDate());
 		
 		em.merge(emp);
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 	}
 
 	@Override
